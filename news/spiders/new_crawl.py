@@ -25,9 +25,6 @@ class QuotesSpider(scrapy.Spider):
         list_paragraph = response.css('article p::text').extract()
         l = [pa.strip() for pa in list_paragraph]
         content = '\n'.join(l)
-        print('title', title)
-        print('summary', summary)
-        # print('content', content)
 
         # Save
         item = NewsItem()
