@@ -1,5 +1,6 @@
 import scrapy
 from news.items import NewsItem
+from news.database.firestore import db, add_data
 
 class QuotesSpider(scrapy.Spider):
     name = "news"
@@ -27,9 +28,14 @@ class QuotesSpider(scrapy.Spider):
         content = '\n'.join(l)
 
         # Save
-        item = NewsItem()
-        item['title'] = title
-        item['summary'] = summary
-        item['content'] = content
-        yield item
+        # item = NewsItem()
+        # item['title'] = title
+        # item['summary'] = summary
+        # item['content'] = content
+        add_data({
+            'title': title,    
+            'summary': summary,    
+            'content': content        
+        }, '24h_news')
+        # yield item
           
